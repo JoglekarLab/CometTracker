@@ -1,12 +1,11 @@
-# EB3 comet detection and tracking
+# Comet detection and tracking
 
-Two halves of one pipeline for measuring microtubule plus-end dynamics from
-live-cell TIRF movies of EB3-GFP.
+Pipeline for measuring microtubule plus-end comets from live-cell TIRF movies.
 
 | | what it is |
 |---|---|
 | [`SAM3Training/`](SAM3Training/) | the **detector** — a fine-tuned SAM3 query model that emits, per comet: presence, a centreline axis mask, a head heatmap, and a frame-to-frame identity link |
-| [`CometTracker_v7/`](CometTracker_v7/) | the **tracker** — a plusTipTracker-shaped two-stage LAP tracker that links those masks into growth / pause / shrinkage tracks |
+| [`CometTracker/`](CometTracker/) | the **tracker** — a plusTipTracker-shaped two-stage LAP tracker that links those masks into growth / pause / shrinkage tracks |
 
 They are independent. The tracker reads a `<stem>_labels.tif` +
 `<stem>_prob.tif` prediction folder, which is the same layout the project's
