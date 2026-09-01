@@ -1,0 +1,30 @@
+{
+  "heldout_movies_in_training": [],
+  "missing_validation_movies": [],
+  "pajv101_background_only": true,
+  "pajv101_max_background_fraction": 0.15,
+  "pajv101_training_background_fraction": 0.1064516129032258,
+  "pajv101_training_background_records": 33,
+  "source_kind_counts": {
+    "current:accepted_pair": 173,
+    "current:background_negative": 375,
+    "procedural:unknown": 64,
+    "unet_masks:pasted_axis_pair": 5936
+  },
+  "status": "passed",
+  "train_records": 6404,
+  "train_val_movie_overlap": [],
+  "training_background_records": 310,
+  "training_movie_count": 81,
+  "unexpected_validation_movies": [],
+  "validation_movie_count": 2,
+  "validation_movies_expected": [
+    "20260710_pAJV103_0.25DOX-ON_010",
+    "20260716_N271_0.25DOX_ON_002"
+  ],
+  "validation_movies_observed": [
+    "20260710_pAJV103_0.25DOX-ON_010",
+    "20260716_N271_0.25DOX_ON_002"
+  ],
+  "validation_records": 144
+}

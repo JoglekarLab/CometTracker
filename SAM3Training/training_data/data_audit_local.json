@@ -1,0 +1,124 @@
+{
+  "leakage_audit": {
+    "heldout_movies_in_training": [],
+    "missing_validation_movies": [],
+    "pajv101_background_only": true,
+    "pajv101_max_background_fraction": 0.15,
+    "pajv101_training_background_fraction": 0.1064516129032258,
+    "pajv101_training_background_records": 33,
+    "source_kind_counts": {
+      "current:accepted_pair": 173,
+      "current:background_negative": 375,
+      "procedural:unknown": 64,
+      "unet_masks:pasted_axis_pair": 5936
+    },
+    "status": "passed",
+    "train_records": 6404,
+    "train_val_movie_overlap": [],
+    "training_background_records": 310,
+    "training_movie_count": 81,
+    "unexpected_validation_movies": [],
+    "validation_movie_count": 2,
+    "validation_movies_expected": [
+      "20260710_pAJV103_0.25DOX-ON_010",
+      "20260716_N271_0.25DOX_ON_002"
+    ],
+    "validation_movies_observed": [
+      "20260710_pAJV103_0.25DOX-ON_010",
+      "20260716_N271_0.25DOX_ON_002"
+    ],
+    "validation_records": 144
+  },
+  "manifest_inventory": {
+    "current:accepted_pair": 173,
+    "current:background_negative": 375,
+    "current_positive_fraction_when_sampled": 0.75,
+    "procedural:recipe": 64,
+    "procedural_empty_fraction": 0.1,
+    "procedural_frozen_fraction": 0.1,
+    "unet_masks:pasted_axis_pair": 5936
+  },
+  "materialized_examples": {
+    "current_partial_background": {
+      "axes_t": 0,
+      "certified_regions_t": 1,
+      "exhaustive_t": false,
+      "heads_t": 0,
+      "instances_t": 0,
+      "instances_tp1": 0,
+      "positive_links": 0,
+      "range": [
+        0.0,
+        1.0
+      ],
+      "sample_id": "current-bg:0037d6294eec7095:0",
+      "shape": [
+        192,
+        192,
+        3
+      ],
+      "source": "current"
+    },
+    "current_positive": {
+      "axes_t": 1,
+      "certified_regions_t": 0,
+      "exhaustive_t": false,
+      "heads_t": 1,
+      "instances_t": 1,
+      "instances_tp1": 1,
+      "positive_links": 1,
+      "range": [
+        0.0,
+        1.0
+      ],
+      "sample_id": "current:0028bfc2d7a4bedb",
+      "shape": [
+        192,
+        192,
+        3
+      ],
+      "source": "current"
+    },
+    "old_unet_paste": {
+      "axes_t": 1,
+      "certified_regions_t": 0,
+      "exhaustive_t": false,
+      "heads_t": 0,
+      "instances_t": 1,
+      "instances_tp1": 1,
+      "positive_links": 1,
+      "range": [
+        0.0,
+        1.0
+      ],
+      "sample_id": "unet:20260710_EB3WT_0.25DOX-ON_003:label-10:run-0:t-10:d8-00:seed-20316279",
+      "shape": [
+        192,
+        192,
+        3
+      ],
+      "source": "unet_masks"
+    },
+    "procedural": {
+      "axes_t": 3,
+      "certified_regions_t": 0,
+      "exhaustive_t": true,
+      "heads_t": 3,
+      "instances_t": 3,
+      "instances_tp1": 3,
+      "positive_links": 3,
+      "range": [
+        0.0,
+        1.0
+      ],
+      "sample_id": "procedural-0020260830",
+      "shape": [
+        192,
+        192,
+        3
+      ],
+      "source": "procedural"
+    }
+  },
+  "status": "passed"
+}
