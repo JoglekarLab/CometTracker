@@ -41,21 +41,27 @@ comet, draws the path travelled, and disappears when the comet is lost.
      rendered mp4s are ~3 MB each and regenerate in about 20 seconds from
      CometTracker_v7/tools/render_video.py. -->
 
-## The tracker in one paragraph
+## Tracking algorithm
 
 A microtubule grows along a line, and a SAM3 mask is a *rendered centreline*
 rather than a blob of light — its training target is a 3 px-wide soft tube with
 "deliberately no taper". So the mask's principal axis is the growth axis.
 Measured on real predictions: **5.4°** median between the mask axis and the
 direction of travel, and the across-axis component of a single-frame step has a
-**p99 of 2.16 px**. V7 spends that on a corridor gate that, unlike any
+**p99 of 2.16 px**. CometTracker spends that on a corridor gate that, unlike any
 motion-derived gate, already exists on a track's *first* frame.
 
-See [`CometTracker_v7/DESIGN.md`](CometTracker_v7/DESIGN.md) for what is
+The tracking algorithm follows **plusTipTracker** (Applegate et al. 2011,
+*J Struct Biol* 176:168–184) and the LAP framework of **u-track** (Jaqaman et
+al. 2008, *Nat Methods* 5:695–702). `CometTracker` is an independent
+implementation. It reproduces their *method*: two-stage
+assignment, forward/backward gap classification, and MSS motion analysis.
+
+See [`CometTracker/DESIGN.md`](CometTracker/DESIGN.md) for what is
 measured, what is guessed, and what is known to be broken.
 
 ```bash
-cd CometTracker_v7
+cd CometTracker
 pip install -r requirements.txt
 python -m pytest tests/ -q          # 47 tests
 ```
@@ -103,44 +109,4 @@ Point the export at whichever you want with `ADAPTER=`. The run's `last.pt` is
 about 1 GB because it carries optimizer state for resuming training; it is not
 needed for inference and is deliberately not published.
 
-This needs **more than 16 GB of GPU memory**. A pair of 1008×1008 inputs wants
-about 6.4 GB in a single allocation without flash attention, so pre-Ampere
-V100s die in the first forward pass — see the note at the top of
-`sbatch/predict_sam3.sbatch`.
-
----
-
-## What is not here
-
-Raw `.nd2` movies, evaluation data, model checkpoints, and the vendored u-track
-MATLAB source all stay out — about 6.7 GB, and the u-track copy is GPL. The
-`.gitignore` is an allow-list rather than a deny-list so none of it can be added
-by accident.
-
-The training manifests in `SAM3Training/training_data/manifests/` are recipes
-holding relative provenance paths, not image data. They are the reproducibility
-audit trail; they need the original movies to be resolvable.
-
-### Uploading the weights (maintainers)
-
-```bash
-gh release create v0.1.0 \
-  SAM3Training/runs/comet_sam3_final/best.pt \
-  SAM3Training/runs/comet_sam3_final/epoch_25_adapter.pt \
-  --title "comet-SAM3 v0.1.0" \
-  --notes "Fine-tuned SAM3 adapters from the 25-epoch curriculum campaign."
-```
-
-Note that a private repository's releases are private too, so anyone who needs
-the weights must be a collaborator. If they should reach a wider audience,
-Zenodo is the better home: it gives a DOI, needs no access management, and
-outlives the repository.
-
-## Credit
-
-The tracking algorithm follows **plusTipTracker** (Applegate et al. 2011,
-*J Struct Biol* 176:168–184) and the LAP framework of **u-track** (Jaqaman et
-al. 2008, *Nat Methods* 5:695–702). `CometTracker_v7` is an independent
-implementation — it was written from scratch and shares no code with either, so
-it is not bound by u-track's GPL. It reproduces their *method*: two-stage
-assignment, forward/backward gap classification, and MSS motion analysis.
+This needs **more than 16 GB of GPU memory**.
