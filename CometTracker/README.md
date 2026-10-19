@@ -23,12 +23,6 @@ method works, see [`CometTracker_v7/DESIGN.md`](../CometTracker_v7/DESIGN.md).
 
 ![The v9 background box on a real comet](docs/fig_background_box.png)
 
-<sub>The background box on a real comet (movie 20261007_EB3GW16+0.25DOX_011,
-frame 76, 1×). It runs the length of the mask plus 2 px past each end, 5–9 px to either
-side of the long axis, and skips pixels inside any mask. Its median is the
-comet's background. Not closer than 5 px, where the comet's own light still
-adds a few percent; not ahead or behind, where the lattice still carries EB3.</sub>
-
 Linking and gap closing are the same as v8. Defaults: `max_gap = 0`, tracks of
 at least 3 frames.
 
