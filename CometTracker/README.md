@@ -11,7 +11,7 @@ method works, see [`CometTracker_v7/DESIGN.md`](../CometTracker_v7/DESIGN.md).
   1.5× = 0.1059 µm/px. The .nd2 files never record the 1.5× optovar.
 - The 488 nm channel is read **by name** (`movie.read_movie`), so two-channel
   files are handled correctly.
-- The motion label uses the `diffusion` criterion.
+- The motion label uses the `diffusion` criterion. It compares how far a track gets from its start with how far random jiggling with the same step size would get: D = net distance ÷ (rms step × √steps). A track is directed when D ≥ 1.73, which random motion reaches only 5% of the time.
 
 **v9** ([`CHANGELOG_v9.md`](CHANGELOG_v9.md))
 - Per-comet background from a box turned with the comet, 5–9 px to each side.
